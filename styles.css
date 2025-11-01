@@ -2850,60 +2850,6 @@ ul, ol {
     color: var(--color-accent);
 }
 
-@media (max-width: 768px) {
-    .qualifications-hero {
-        padding: var(--space-12) 0;
-    }
-
-    .qualifications-header h1 {
-        font-size: var(--text-3xl);
-    }
-
-    .qualifications-header .subtitle {
-        font-size: var(--text-base);
-    }
-
-    .qualifications-wrapper {
-        flex-direction: column;
-        gap: var(--space-6);
-        padding: 0 var(--space-4);
-    }
-
-    .highlight-card {
-        width: 100%;
-        padding: var(--space-4);
-    }
-
-    .highlight-year {
-        font-size: var(--text-3xl);
-    }
-
-    .qualification-item {
-        flex-direction: row;
-        align-items: center;
-        padding: var(--space-3);
-        gap: var(--space-3);
-    }
-
-    .qualification-item span {
-        font-size: var(--text-base);
-    }
-
-    .trainer-photo-container {
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .trainer-photo {
-        width: 100%;
-        height: auto;
-    }
-
-    .trainer-bio-section {
-        padding: var(--space-12) 0;
-    }
-}
-
 /* Redesigned Qualifications Section */
 .qualifications-hero {
     padding: 5rem 0;
@@ -3024,5 +2970,59 @@ ul, ol {
     .trainer-photo-container {
         width: 100%;
         max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .qualifications-hero {
+        padding: var(--space-12) 0;
+    }
+
+    .qualifications-header h1 {
+        font-size: var(--text-3xl);
+    }
+
+    .qualifications-header .subtitle {
+        font-size: var(--text-base);
+    }
+
+    .qualifications-wrapper {
+        gap: var(--space-4);
+        padding: 0 var(--space-4);
+    }
+
+    .qualifications-highlights {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .highlight-card {
+        width: 100%;
+        padding: var(--space-3);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+
+    .highlight-year {
+        font-size: var(--text-2xl);
+    }
+
+    .highlight-title {
+        font-size: var(--text-base);
+    }
+
+    .highlight-detail {
+        font-size: var(--text-sm);
+    }
+
+    .qualification-item {
+        padding: var(--space-2) var(--space-3);
+        gap: var(--space-3);
+        font-size: var(--text-sm);
+    }
+
+    .qualification-item span {
+        font-size: var(--text-sm);
     }
 }
