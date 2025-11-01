@@ -10,7 +10,6 @@ class CologneBoxingStyle {
 
     init() {
         this.setupEventListeners();
-        this.initMobileNavigation();
         this.initCookieBanner();
         this.initSmoothScrolling();
         this.initScrollAnimations();
@@ -37,6 +36,7 @@ class CologneBoxingStyle {
 
     onDOMReady() {
         console.log('Cologne Boxing Style - Website loaded');
+        this.initMobileNavigation();
         this.updateActiveNavigation();
         this.initLazyLoading();
     }
@@ -61,7 +61,9 @@ class CologneBoxingStyle {
         const menu = document.getElementById('navbar-menu');
 
         if (toggle && menu) {
-            toggle.addEventListener('click', () => {
+            toggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 const isActive = toggle.classList.contains('active');
                 
                 if (isActive) {
@@ -69,6 +71,10 @@ class CologneBoxingStyle {
                 } else {
                     this.openMobileMenu(toggle, menu);
                 }
+            });
+
+            menu.addEventListener('click', (event) => {
+                event.stopPropagation();
             });
 
             // Close menu when clicking on links
@@ -88,6 +94,7 @@ class CologneBoxingStyle {
     }
 
     openMobileMenu(toggle, menu) {
+        if (!toggle || !menu) return;
         toggle.classList.add('active');
         toggle.setAttribute('aria-expanded', 'true');
         menu.classList.add('show');
@@ -100,6 +107,7 @@ class CologneBoxingStyle {
     }
 
     closeMobileMenu(toggle, menu) {
+        if (!toggle || !menu) return;
         toggle.classList.remove('active');
         toggle.setAttribute('aria-expanded', 'false');
         menu.classList.remove('show');
@@ -109,6 +117,8 @@ class CologneBoxingStyle {
     updateMobileNavigation() {
         const toggle = document.getElementById('navbar-toggle');
         const menu = document.getElementById('navbar-menu');
+
+        if (!toggle || !menu) return;
 
         if (window.innerWidth >= 769) {
             this.closeMobileMenu(toggle, menu);
