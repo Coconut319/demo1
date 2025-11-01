@@ -61,21 +61,39 @@ class CologneBoxingStyle {
         const menu = document.getElementById('navbar-menu');
 
         if (toggle && menu) {
-            toggle.addEventListener('click', (event) => {
+            let isTouchInteraction = false;
+
+            const handleToggle = (event) => {
                 event.preventDefault();
                 event.stopPropagation();
+
+                if (event.type === 'touchstart') {
+                    isTouchInteraction = true;
+                }
+
+                if (event.type === 'click' && isTouchInteraction) {
+                    isTouchInteraction = false;
+                    return;
+                }
+
                 const isActive = toggle.classList.contains('active');
-                
+
                 if (isActive) {
                     this.closeMobileMenu(toggle, menu);
                 } else {
                     this.openMobileMenu(toggle, menu);
                 }
-            });
+            };
+
+            toggle.addEventListener('click', handleToggle);
+            toggle.addEventListener('touchstart', handleToggle, { passive: false });
 
             menu.addEventListener('click', (event) => {
                 event.stopPropagation();
             });
+            menu.addEventListener('touchstart', (event) => {
+                event.stopPropagation();
+            }, { passive: true });
 
             // Close menu when clicking on links
             menu.querySelectorAll('.nav-link').forEach(link => {
@@ -84,12 +102,15 @@ class CologneBoxingStyle {
                 });
             });
 
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
+            const outsideClickHandler = (e) => {
+                if (!menu.classList.contains('show')) return;
                 if (!toggle.contains(e.target) && !menu.contains(e.target)) {
                     this.closeMobileMenu(toggle, menu);
                 }
-            });
+            };
+
+            document.addEventListener('click', outsideClickHandler);
+            document.addEventListener('touchstart', outsideClickHandler, { passive: true });
         }
     }
 
@@ -98,6 +119,7 @@ class CologneBoxingStyle {
         toggle.classList.add('active');
         toggle.setAttribute('aria-expanded', 'true');
         menu.classList.add('show');
+        document.body.classList.add('mobile-menu-open');
         document.body.style.overflow = 'hidden';
         
         // Add haptic feedback on mobile
@@ -112,6 +134,7 @@ class CologneBoxingStyle {
         toggle.setAttribute('aria-expanded', 'false');
         menu.classList.remove('show');
         document.body.style.overflow = '';
+        document.body.classList.remove('mobile-menu-open');
     }
 
     updateMobileNavigation() {
