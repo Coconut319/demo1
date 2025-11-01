@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cologneboxingstyle.de/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Block access to assets and other files
+Disallow: /css/
+Disallow: /js/
+Disallow: /assets/*.jpg
+Disallow: /assets/*.png
+Disallow: /assets/*.gif
+Disallow: /assets/*.svg
+
+# Allow access to main pages
+Allow: /
+Allow: /kurse.html
+Allow: /trainer.html
+Allow: /galerie.html
+Allow: /ueber-uns.html
+Allow: /kontakt.html
+Allow: /impressum.html
+Allow: /datenschutz.html
+Allow: /agb.html
