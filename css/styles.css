@@ -1920,6 +1920,30 @@ ul, ol {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .course-navigation {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding: 0 var(--space-4) var(--space-4);
+    scroll-snap-type: x mandatory;
+  }
+
+  .course-navigation::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .course-navigation::-webkit-scrollbar-thumb {
+    background: rgba(13, 71, 161, 0.3);
+    border-radius: var(--radius-full);
+  }
+
+  .course-nav-item {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+  }
+}
+
 /* Trainer Section */
 .trainer-preview {
   background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
@@ -2323,6 +2347,14 @@ ul, ol {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .main {
+    padding-top: 5.5rem;
+  }
+
+  .courses-hero {
+    padding-top: calc(var(--space-16) + 6rem);
+  }
+  
   :root {
     --container-padding: var(--space-4);
   }
